@@ -8,15 +8,16 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  final queueService = GetQueueNumberService(
-    baseUrl: Constant.baseUrlEmu,
-    getCredentials: () => Constant.credentialsBasic,
-  );
-
-  final queueFeeder = QueueFeeder(queueService);
-  final dashboardVm = DashboardVm(queueFeeder);
   runApp(
-    ChangeNotifierProvider(create: (_) => dashboardVm, child: const MainApp()),
+    ChangeNotifierProvider(
+      create: (_) => DashboardVm(
+        queueFeeder: QueueFeeder(
+          getQueueNumberService: GetQueueNumberService(
+            baseUrl: Constant.baseUrlEmu,
+          ),
+        ),
+      ),child: MainApp(),
+    ),
   );
 }
 
