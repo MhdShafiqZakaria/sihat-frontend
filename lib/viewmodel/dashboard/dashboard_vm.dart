@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_test_sihat/dto/queue/queue_number_dto.dart';
 import 'package:flutter_test_sihat/networking/queue/queue_feeder.dart';
 
-import '../../networking/exceptions.dart';
+import '../../utils/exceptions.dart';
 
 class DashboardVm extends ChangeNotifier {
 
