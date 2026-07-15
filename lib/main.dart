@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test_sihat/networking/queue/get_queue_number_service.dart';
 import 'package:flutter_test_sihat/networking/queue/queue_feeder.dart';
-import 'package:flutter_test_sihat/utils/constant.dart';
+import 'package:flutter_test_sihat/utils/url_constant.dart';
 import 'package:flutter_test_sihat/viewmodel/dashboard/dashboard_vm.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +14,7 @@ void main() {
       create: (_) => DashboardVm(
         queueFeeder: QueueFeeder(
           getQueueNumberService: GetQueueNumberService(
-            baseUrl: Constant.baseUrlEmu,
+            baseUrl: UrlConstant.baseUrlEmu,
           ),
         ),
       ),child: MainApp(),
