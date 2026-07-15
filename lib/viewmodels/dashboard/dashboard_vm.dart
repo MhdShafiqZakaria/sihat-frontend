@@ -2,26 +2,34 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_test_sihat/dto/queue/queue_number_dto.dart';
 import 'package:flutter_test_sihat/networking/queue/queue_feeder.dart';
 
+import '../../networking/exceptions.dart';
+
 class DashboardVm extends ChangeNotifier {
+
   final QueueFeeder queueFeeder;
 
-  DashboardVm(this.queueFeeder);
+  DashboardVm({required this.queueFeeder});
 
   QueueNumberDto? queueNumberDto;
-  bool isloading = false;
+  bool isLoading = false;
   String? errorMessage;
 
-  Future<void> loadQueueData() async {
-    isloading = true;
-    errorMessage = null;
+  Future<void> loadQueueNumber() async {
+    isLoading = true;
     notifyListeners();
 
     try {
       queueNumberDto = await queueFeeder.fetchUserQueueTicket();
-    } catch (e) {
-      errorMessage = e.toString();
-    } finally {
-      isloading = false;
+    } on UnauthorizedException {
+      errorMessage = 'unauthorized';
+    } on ApiException {
+      errorMessage = 'Server error';
+    } on NetworkException catch (e) {
+      errorMessage = e.message;
+    } catch (e){
+      errorMessage = 'An unexpected error occurred';
+    } finally{
+      isLoading = false;
       notifyListeners();
     }
   }
