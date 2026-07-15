@@ -23,5 +23,5 @@ class Constant {
   static String baseUrlEmu = "http://10.0.2.2:8080";
 
   static String baseUrlLocal = "https://cors-anywhere.herokuapp.com/http://localhost:8080";
-  static String credentialsBasic = "97529:Unimas!040204600013";
+  static String credentialsBasic = "UG100:Unimas!0403210567";
 }
