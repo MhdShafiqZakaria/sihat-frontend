@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test_sihat/networking/queue/get_queue_number_service.dart';
 import 'package:flutter_test_sihat/networking/queue/queue_feeder.dart';
+import 'package:flutter_test_sihat/utils/theme_constant.dart';
 import 'package:flutter_test_sihat/utils/url_constant.dart';
+import 'package:flutter_test_sihat/view/shared/navigation_bar.dart';
 import 'package:flutter_test_sihat/viewmodel/dashboard/dashboard_vm.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_test_sihat/viewmodel/navigation/navigation_vm.dart';
 import 'package:provider/provider.dart';
-
-import 'view/dashboard/home_dashboard.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => DashboardVm(
-        queueFeeder: QueueFeeder(
-          getQueueNumberService: GetQueueNumberService(
-            baseUrl: UrlConstant.baseUrlEmu,
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => DashboardVm(
+            queueFeeder: QueueFeeder(
+              getQueueNumberService: GetQueueNumberService(
+                baseUrl: UrlConstant.baseUrlEmu,
+              ),
+            ),
           ),
         ),
-      ),child: MainApp(),
+        ChangeNotifierProvider(create: (_) => NavigationVm()),
+      ],
+      child: MainApp(),
     ),
   );
 }
@@ -27,18 +33,17 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final materialTheme = MaterialTheme(Theme.of(context).textTheme);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: _buildTheme(Brightness.light),
-      home: HomeDashboard(),
-    );
-  }
+      themeMode: ThemeMode.system,
 
-  ThemeData _buildTheme(Brightness brightness) {
-    final baseTheme = ThemeData(brightness: brightness);
+      theme: materialTheme.light(),
 
-    return baseTheme.copyWith(
-      textTheme: GoogleFonts.manropeTextTheme(baseTheme.textTheme),
+      darkTheme: materialTheme.dark(),
+
+      home: MyNavigationBar(),
     );
   }
 }
