@@ -2,42 +2,44 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test_sihat/view/appointment/choose_appointment_type_page.dart';
-class AppointmentpageEmptystate extends StatefulWidget {
-  const AppointmentpageEmptystate({super.key});
+import '../shared/app_bar.dart';
+import '../shared/filter_button.dart';
+class AppointmentPageEmptyState extends StatefulWidget {
+  const AppointmentPageEmptyState({super.key});
 
   @override
-  State<AppointmentpageEmptystate> createState() => _AppointmentpageEmptystateState();
+  State<AppointmentPageEmptyState> createState() => _AppointmentPageEmptyStateState();
 }
 
-class _AppointmentpageEmptystateState extends State<AppointmentpageEmptystate> {
+class _AppointmentPageEmptyStateState extends State<AppointmentPageEmptyState> {
   String selectedFilter = 'All';
-
+  final List<String> filters = [
+    'All',
+    'Pending',
+    'Approved',
+    'Declined',
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Image.asset('assets/images/unimas_logo.png', height: 30),
-            const SizedBox(width: 10),
-            const Text("UNIMAS Sihat", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-          ],
-        ),
-        backgroundColor: const Color.fromRGBO(244, 245, 240, 1),
-      ),
+      appBar: MyAppbar(),
       body: 
       Column(
         // color: Color.fromRGBO(255, 255, 255, 1),
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _buildFilterButton('All'),
-              _buildFilterButton('Approved'),
-              _buildFilterButton('Pending'),
-              _buildFilterButton('Declined')
-            ],
+          //Filter Button
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: filters.map((label) {
+                return FilterButton(
+                  label: label,
+                  isSelected: selectedFilter == label,
+                  onPressed: () => setState(() => selectedFilter = label),
+                );
+              }).toList(),
+            ),
           ),
           Expanded(
             child: Center(
@@ -81,26 +83,6 @@ class _AppointmentpageEmptystateState extends State<AppointmentpageEmptystate> {
       ),
 
 
-    );
-  }
-
-  Widget _buildFilterButton(String label) {
-    final isSelected = selectedFilter == label;
-    final baseColor = const Color.fromRGBO(223, 229, 214, 1);
-
-    return ElevatedButton(
-      onPressed: () {
-        setState(() {
-          selectedFilter = label;
-        });
-      },
-      style: ElevatedButton.styleFrom(
-        backgroundColor: isSelected
-            ? Color.lerp(baseColor, Color.fromRGBO(62, 74, 55, 1), 0.75)
-            : baseColor,
-        
-      ),
-      child: Text(label, style: TextStyle(color: isSelected ? Colors.white : Colors.black, fontWeight: isSelected ? FontWeight.bold: FontWeight.normal)),
     );
   }
 }
