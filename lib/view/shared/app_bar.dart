@@ -8,24 +8,21 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Constant.backgroundPrimaryColour,
 
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Expanded(
-            child: Image.asset(
-              'assets/images/UNIMAS-logo.png',
-              fit: BoxFit.fitHeight,
-              height: 45,
-            ),
+          Image.asset(
+            'assets/images/UNIMAS-logo.png',
+            height: 30,
           ),
+          SizedBox(width: 10),
           Expanded(
             child: Text(
               "UNIMAS Sihat",
               style: TextStyle(
-                color: Constant.textGreen,
                 fontWeight: FontWeight.bold,
+                fontSize: 20
               ),
             ),
           ),

@@ -11,6 +11,7 @@ class IconBtnAppbar extends StatelessWidget {
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(20),
+
       ),
       child: iconButton,
     );
