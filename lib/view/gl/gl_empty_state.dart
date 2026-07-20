@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_test_sihat/view/gl/request_gl_form.dart';
 import 'package:flutter_test_sihat/view/shared/app_bar.dart';
 import 'package:flutter_test_sihat/view/shared/filter_button.dart';
 
@@ -71,7 +72,13 @@ class _GlEmptyStateState extends State<GlEmptyState> {
                     ),
                     IconButton(
                       icon: Icon(Icons.add_outlined),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => RequestGlForm(),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
