@@ -4,12 +4,13 @@ import 'package:flutter_test_sihat/view/dashboard/home_dashboard.dart';
 import 'package:flutter_test_sihat/view/queue/queue_page.dart';
 import 'package:flutter_test_sihat/viewmodel/navigation/navigation_vm.dart';
 import 'package:provider/provider.dart';
+import '../emr/emr_profile.dart';
 import '../gl/gl_empty_state.dart';
 
 class MyNavigationBar extends StatelessWidget {
    const MyNavigationBar({super.key});
 
-  static const _tabs = [HomeDashboard(), AppointmentPageEmptyState(),QueuePage(),GlEmptyState()];
+  static const _tabs = [HomeDashboard(), AppointmentPageEmptyState(),QueuePage(),GlEmptyState(),EmrProfile()];
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +47,7 @@ class MyNavigationBar extends StatelessWidget {
             label: 'Requests',
           ),
           NavigationDestination(
+            selectedIcon: Icon(Icons.person_2,color: Colors.white),
             icon: Icon(Icons.person_2_outlined,color: Colors.black),
             label: 'EMR',
           ),
