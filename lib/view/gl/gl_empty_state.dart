@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test_sihat/view/gl/request_gl_form.dart';
 import 'package:flutter_test_sihat/view/shared/app_bar.dart';
+import 'package:flutter_test_sihat/view/shared/detail_card.dart';
 import 'package:flutter_test_sihat/view/shared/filter_button.dart';
 
 import '../../utils/constant.dart';
@@ -22,6 +23,7 @@ class _GlEmptyStateState extends State<GlEmptyState> {
     'Rejected',
     'Ready to Collect',
   ];
+
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
@@ -102,6 +104,22 @@ class _GlEmptyStateState extends State<GlEmptyState> {
               }).toList(),
             ),
           ),
+
+          Constant.sizedBoxHeight20,
+
+          Expanded(
+            child: ListView.builder(
+              itemCount: 3,
+              itemBuilder: (_, index) => DetailCard(
+                icon: Icon(Icons.inventory_2_outlined),
+                id: 'GL - 2026- 9912',
+                destination: 'Pusat Kesihatan UNIMAS',
+                status: DetailCardStatus.rejected,
+                date: '26/6/2026',
+              ),
+            ),
+          ),
+
         ],
       ),
     );
