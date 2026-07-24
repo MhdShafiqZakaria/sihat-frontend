@@ -15,6 +15,7 @@ migrate_working_dir/
 .github/
 *.md
 !README.md
+.claude
 
 # Environment / secrets
 .env
