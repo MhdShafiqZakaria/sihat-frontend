@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types, file_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter_test_sihat/view/appointment/bookingtransport_booking_page.dart';
 import 'package:flutter_test_sihat/view/appointment/mcu_booking_page.dart';
 
 double sides = 10;
@@ -31,11 +32,12 @@ class ChooseAppointmentTypePage extends StatelessWidget{
                 style: ElevatedButton.styleFrom(
                 fixedSize: const Size(1000, 100),
                 elevation: 0,
+                backgroundColor: Colors.white
               ),
               onPressed: (){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const McuBookingPage()),
+                  MaterialPageRoute(builder: (context) => const McuBookingpage()),
                 );
               }, 
               child: Padding(
@@ -69,8 +71,11 @@ class ChooseAppointmentTypePage extends StatelessWidget{
               style: ElevatedButton.styleFrom(
                 fixedSize: const Size(1000, 100),
                 elevation: 0,
+                backgroundColor: Colors.white
               ),
-              onPressed: (){}, 
+              onPressed: (){
+
+              },
               child: Padding(
                 padding: EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 20),
                 child: Row(
@@ -101,6 +106,7 @@ class ChooseAppointmentTypePage extends StatelessWidget{
                 style: ElevatedButton.styleFrom(
                 fixedSize: const Size(1000, 100),
                 elevation: 0,
+                backgroundColor: Colors.white
               ),
               onPressed: (){}, 
               child: Padding(
@@ -133,8 +139,14 @@ class ChooseAppointmentTypePage extends StatelessWidget{
                 style: ElevatedButton.styleFrom(
                 fixedSize: const Size(1000, 100),
                 elevation: 0,
+                backgroundColor: Colors.white
               ),
-              onPressed: (){}, 
+              onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const BookingtransportBookingPage()),
+                );
+              },
               child: Padding(
                 padding: EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 20),
                 child: Row(
