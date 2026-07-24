@@ -23,6 +23,10 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+
+        // Required by flutter_appauth: must match the scheme of AUTH_REDIRECT_URI in .env
+        // (e.g. com.yourcompany.yourapp://callback -> scheme "com.yourcompany.yourapp")
+        manifestPlaceholders["appAuthRedirectScheme"] = "com.yourcompany.yourapp"
     }
 
     buildTypes {
